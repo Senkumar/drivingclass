@@ -3,7 +3,7 @@
  */
 
 const request = require('supertest')
-const server = require('../index.js')
+const server = require('../app.js')
 
 describe('GET /', () => {
     it('Responds with HTTP 200', () => {
