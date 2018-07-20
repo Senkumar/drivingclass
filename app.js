@@ -7,6 +7,11 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var about = require('./routes/about');
+var services = require('./routes/services');
+var contact = require('./routes/contact');
+var price = require('./routes/price');
+var faq = require('./routes/faq');
 
 var app = express();
 
@@ -22,8 +27,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// bootstrap folder setup
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
+
 app.use('/', index);
 app.use('/users', users);
+
+app.use('/about', about);
+app.use('/services', services);
+app.use('/contact', contact);
+app.use('/price', price);
+app.use('/faq', faq);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
